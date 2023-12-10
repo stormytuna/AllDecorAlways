@@ -13,7 +13,7 @@ namespace AllDecorAlways.Patches
                 .Where(u => u.shopSelectionNode != null && !u.alwaysInStock && !u.hasBeenUnlockedByPlayer && !u.alreadyUnlocked)
                 .Select(u => u.shopSelectionNode);
 
-            foreach (var unlockable in availableDecor) {
+            foreach (TerminalNode unlockable in availableDecor) {
                 AllDecorAlwaysBase.Log.LogInfo($"Thing is {unlockable.name}");
             }
 
@@ -26,9 +26,9 @@ namespace AllDecorAlways.Patches
 
         [HarmonyPostfix, HarmonyPatch("Awake")]
         public static void ChangeDecorHeading(Terminal __instance) {
-            var storeNode = __instance.terminalNodes.allKeywords.First(kw => kw.name == "Store").specialKeywordResult;
-            var displayTextLines = storeNode.displayText.Split('\n').ToList();
-            var decorStartIndex = displayTextLines.IndexOf("[unlockablesSelectionList]");
+            TerminalNode storeNode = __instance.terminalNodes.allKeywords.First(kw => kw.name == "Store").specialKeywordResult;
+            List<string> displayTextLines = storeNode.displayText.Split('\n').ToList();
+            int decorStartIndex = displayTextLines.IndexOf("[unlockablesSelectionList]");
 
             if (decorStartIndex < 0) {
                 AllDecorAlwaysBase.Log.LogError("Failed to find decor start index in store node display text!");
