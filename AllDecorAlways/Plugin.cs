@@ -1,4 +1,5 @@
 ﻿using BepInEx;
+using BepInEx.Configuration;
 using BepInEx.Logging;
 using HarmonyLib;
 
@@ -23,7 +24,19 @@ namespace AllDecorAlways
 
             Log.LogInfo("All Decor Always has awoken!");
 
+            LoadConfigs();
+
             harmony.PatchAll();
         }
+
+        #region Configs
+
+        public static ConfigEntry<bool> UnlockAllDecor;
+
+        private void LoadConfigs() {
+            UnlockAllDecor = Config.Bind("Cheats", "UnlockAllDecor", false, "Whether or not all decor should be unlocked immediately rather than having to be bought");
+        }
+
+        #endregion
     }
 }
