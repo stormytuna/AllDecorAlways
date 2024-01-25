@@ -10,7 +10,7 @@ namespace AllDecorAlways
     {
         public const string ModGUID = "stormytuna.AllDecorAlways";
         public const string ModName = "AllDecorAlways";
-        public const string ModVersion = "1.0.0";
+        public const string ModVersion = "1.1.0";
 
         public static ManualLogSource Log = BepInEx.Logging.Logger.CreateLogSource(ModGUID);
         public static AllDecorAlwaysBase Instance;

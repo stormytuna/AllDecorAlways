@@ -1,0 +1,2 @@
+- v1.1.0: Add a config option for unlocking all decor automatically
+- v1.0.0: Initial release
